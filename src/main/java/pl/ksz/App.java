@@ -3,15 +3,14 @@ package pl.ksz;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import pl.jkanclerz.creditcard.NameProvider;
-import pl.jkanclerz.productcatalog.MapProductStorage;
-import pl.jkanclerz.productcatalog.ProductCatalog;
-import pl.jkanclerz.productcatalog.ProductData;
-import pl.jkanclerz.productcatalog.ProductStorage;
-import pl.jkanclerz.sales.*;
+import pl.ksz.creditcard.NameProvider;
+import pl.ksz.productcatalog.MapProductStorage;
+import pl.ksz.productcatalog.ProductCatalog;
+import pl.ksz.productcatalog.ProductData;
+import pl.ksz.productcatalog.ProductStorage;
+import pl.ksz.sales.*;
 
 import java.math.BigDecimal;
-import java.util.Collections;
 
 @SpringBootApplication
 public class App {
@@ -50,7 +49,9 @@ public class App {
     Sales createSales(ProductDetailsProvider productDetailsProvider) {
         return new Sales(
                 new CartStorage(),
-                productDetailsProvider
+                productDetailsProvider,
+                new DummyPaymentGateway(),
+                new ReservationStorage()
         );
     }
 

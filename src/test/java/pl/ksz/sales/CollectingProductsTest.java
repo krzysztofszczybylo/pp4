@@ -1,6 +1,5 @@
 package pl.ksz.sales;
 
-package pl.jkanclerz.sales;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -113,7 +112,9 @@ public class CollectingProductsTest {
     private Sales thereIsSalesModule() {
         return new Sales(
                 cartStorage,
-                new ListProductDetailsProvider(productDetails)
+                new ListProductDetailsProvider(productDetails),
+                new DummyPaymentGateway(),
+                new ReservationStorage()
         );
     }
 
